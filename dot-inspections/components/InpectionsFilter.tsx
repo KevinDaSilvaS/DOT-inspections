@@ -17,7 +17,7 @@ export function InspectionsFilter(props: InspectionsFilterProps) {
             <select
               name="filter"
               id="filter"
-              class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              class="sm:col-span-2 col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
             >
               {options.map((option) =>
                 option == props.filter
@@ -25,7 +25,6 @@ export function InspectionsFilter(props: InspectionsFilterProps) {
                   : <option>{option}</option>
               )}
             </select>
-            <div></div>
             <button
               class="sm:col-span-1 rounded-md bg-slate-600 text-sm/6 font-semibold text-gray-100"
               type="submit"
