@@ -6,16 +6,18 @@ interface ListProps {
   sort: string;
   field: string;
   filter: string;
+  // deno-lint-ignore no-explicit-any
+  data: any[];
 }
 
 export const handler: Handlers<ListProps> = {
   GET(req, ctx) {
     const url = new URL(req.url);
-    const sort = url.searchParams.get("sort") || "asc";
+    const sort = url.searchParams.get("sort") || "desc";
     const field = url.searchParams.get("field") || "date";
     const filter = url.searchParams.get("filter") || "";
     console.log(filter);
-    return ctx.render({ sort, field, filter });
+    return ctx.render({ sort, field, filter, data: [] });
   },
 };
 
@@ -40,7 +42,7 @@ export default function DotInspections(props: PageProps<ListProps>) {
     <body class="bg-slate-200">
       <div class="px-4 py-8 mx-auto">
         <h1 class="text-3xl font-sans">Dot Inspections</h1>
-        <div class="rounded-xl p-8 bg-slate-300">
+        <div class="inline-table rounded-xl p-8 bg-slate-300 w-full">
           <InspectionsFilter
             filter={props.data.filter}
             field={props.data.field}
