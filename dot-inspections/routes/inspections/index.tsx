@@ -42,7 +42,7 @@ export default function DotInspections(props: PageProps<ListProps>) {
     <body class="bg-slate-200">
       <div class="px-4 py-8 mx-auto">
         <h1 class="text-3xl font-sans">Dot Inspections</h1>
-        <div class="inline-table rounded-xl p-8 bg-slate-300 w-full">
+        <div class="inline-table rounded-xl p-8 bg-slate-100 w-full shadow-md mt-4">
           <InspectionsFilter
             filter={props.data.filter}
             field={props.data.field}

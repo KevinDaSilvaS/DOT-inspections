@@ -26,7 +26,7 @@ export function InspectionsFilter(props: InspectionsFilterProps) {
               )}
             </select>
             <button
-              class="sm:col-span-1 rounded-md bg-slate-600 text-sm/6 font-semibold text-gray-100"
+              class="sm:col-span-1 rounded-md text-sm/6 text-gray-100 font-semibold bg-orange-600 ml-2"
               type="submit"
             >
               Search

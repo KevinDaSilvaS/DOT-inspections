@@ -17,10 +17,10 @@ interface InspectionsTableProps {
 
 export function InspectionsTable(props: InspectionsTableProps) {
   return (
-    <table class="border-collapse table-auto w-full text-sm font-sans text-base">
-      <thead class="rounded-xl bg-slate-800">
+    <table class="border-collapse table-auto w-full text-sm font-sans text-base ">
+      <thead class="rounded-xl bg-slate-600 text-slate-300">
         <tr class="rounded-xl">
-          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-3 pb-3 text-slate-400 dark:text-slate-200 text-center">
+          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
                 sortField={props.sortField}
@@ -32,7 +32,7 @@ export function InspectionsTable(props: InspectionsTableProps) {
             </div>
             <p>Date</p>
           </th>
-          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-3 pb-3 text-slate-400 dark:text-slate-200 text-center">
+          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
                 sortField={props.sortField}
@@ -44,7 +44,7 @@ export function InspectionsTable(props: InspectionsTableProps) {
             </div>
             <p>Status</p>
           </th>
-          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-3 pb-3 text-slate-400 dark:text-slate-200 text-center">
+          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
                 sortField={props.sortField}
@@ -56,7 +56,7 @@ export function InspectionsTable(props: InspectionsTableProps) {
             </div>
             <p>Inspection Number</p>
           </th>
-          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-3 pb-3 text-slate-400 dark:text-slate-200 text-center">
+          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
                 sortField={props.sortField}
@@ -68,7 +68,7 @@ export function InspectionsTable(props: InspectionsTableProps) {
             </div>
             <p>Vehicle Plate</p>
           </th>
-          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-3 pb-3 text-slate-400 dark:text-slate-200 text-center">
+          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
                 sortField={props.sortField}
@@ -80,7 +80,7 @@ export function InspectionsTable(props: InspectionsTableProps) {
             </div>
             <p>BASIC</p>
           </th>
-          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-3 pb-3 text-slate-400 dark:text-slate-200 text-center">
+          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
                 sortField={props.sortField}
@@ -92,35 +92,35 @@ export function InspectionsTable(props: InspectionsTableProps) {
             </div>
             <p>Weight</p>
           </th>
-          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-3 pb-3 text-slate-400 dark:text-slate-200 text-center">
+          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             Links
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="bg-slate-200">
         {props.data.map((inspection) => (
           <tr>
-            <td class="text-slate-950 border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-center">
+            <td class="bg-slate-400 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
               {inspection.date}
             </td>
-            <td class="text-slate-950 border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-center">
+            <td class="bg-slate-400 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
               {inspection.status}
             </td>
-            <td class="text-slate-950 border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-center">
+            <td class="bg-slate-400 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
               {inspection.inspectionNumber}
             </td>
-            <td class="text-slate-950 border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-center">
+            <td class="bg-slate-400 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
               {inspection.vehiclePlate}
             </td>
-            <td class="text-slate-950 border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-center">
+            <td class="bg-slate-400 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
               {inspection.basic ?? "-"}
             </td>
-            <td class="text-slate-950 border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-center">
+            <td class="bg-slate-400 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
               {inspection.weight ?? "-"}
             </td>
-            <td class="text-slate-950 border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-center">
+            <td class="bg-slate-400 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
               <a
-                class="rounded-md bg-indigo-600 text-xs/6 font-semibold text-gray-100 p-1"
+                class="rounded-md bg-orange-600 text-xs/6 font-semibold text-gray-100 p-2 shadow-md"
                 href={"/inspections/" + inspection.inspectionNumber}
               >
                 details
