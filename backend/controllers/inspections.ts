@@ -1,3 +1,4 @@
+import { ResponseData } from "../dtos/response.ts";
 import { InspectionsSelector } from "../dtos/selectors.ts";
 import {
   getInspectionDetails,
@@ -31,7 +32,7 @@ export async function fetchInspections(
   sort: string,
   field: string,
   filter: string,
-) {
+): Promise<ResponseData> {
   const selector: InspectionsSelector = {
     page: page < MIN_PAGE ? MIN_PAGE : page,
     limit: limit > MAX_LIMIT ? MAX_LIMIT : limit,
