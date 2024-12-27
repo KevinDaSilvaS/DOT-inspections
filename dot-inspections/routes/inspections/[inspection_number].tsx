@@ -9,6 +9,9 @@ export const handler: Handlers<PageProps> = {
 
     const apiUrl = Deno.env.get("API_URL")
     const res = await fetch(`${apiUrl}inspections/${inspectionNumber}`)
+    if(res.status != 200) {
+      return ctx.renderNotFound();
+    }
     const dt = await res.json();
     console.log(inspectionNumber, dt);
     console.log("PARAMS", inspectionNumber);
