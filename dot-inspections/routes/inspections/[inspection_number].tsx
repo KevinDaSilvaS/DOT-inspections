@@ -1,29 +1,60 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+// deno-lint-ignore-file no-explicit-any
+import { Handlers } from "$fresh/server.ts";
 import { GenericList } from "../../components/GenericList.tsx";
 import { GenericTable } from "../../components/GenericTable.tsx";
 import { SimpleCard } from "../../components/SimpleCard.tsx";
 
-export const handler: Handlers<PageProps> = {
+interface DetailsProps {
+  inspectionNumber: string;
+  data: any;
+}
+
+export const handler: Handlers<DetailsProps> = {
   async GET(_req, ctx) {
     const inspectionNumber = ctx.params.inspection_number;
 
-    const apiUrl = Deno.env.get("API_URL")
-    const res = await fetch(`${apiUrl}inspections/${inspectionNumber}`)
+    const apiUrl = Deno.env.get("API_URL");
+    const res = await fetch(`${apiUrl}/inspections/${inspectionNumber}`)
     if(res.status != 200) {
       return ctx.renderNotFound();
     }
-    const dt = await res.json();
-    console.log(inspectionNumber, dt);
+    const data = await res.json();
+    console.log(inspectionNumber, data);
     console.log("PARAMS", inspectionNumber);
-    return ctx.render();
+    return ctx.render({ data, inspectionNumber });
   },
 };
 
-export default function Details(props: PageProps) {
+export default function Details(props: DetailsProps) {
+  const {
+    status,
+    report_number,
+    usdot,
+    report_state,
+    date,
+    level,
+    facility,
+    start,
+    end,
+    post_crash,
+    hazmat,
+    vehicles,
+    violations,
+  } = props.data;
+  const vehiclesContent: any[] = vehicles?.map((
+    { unit, type, vin, make, plate_state, license_plate }: Record<string, any>,
+  ): any[] => [unit, type, make, plate_state, license_plate, vin]) || [];
+
+  const violationsContent: any[] = violations?.map((
+    { code, section, unit, oos, description, inSMS, basic }: Record<string, any>,
+  ): any[] => [code, section, unit, oos, description, inSMS, basic]) || [];
+
+  const truck = vehicles?.length > 0 ? vehicles[0] : {}
+  const trailer = vehicles?.length > 1 ? vehicles[1] : {}
   return (
     <body class="bg-slate-200">
       <div class="pl-8 pt-5">
-        <h1 class="text-3xl font-sans">{props.params.inspection_number}</h1>
+        <h1 class="text-3xl font-sans">{props.inspectionNumber}</h1>
       </div>
 
       <div id="page" class="grid grid-cols-4">
@@ -44,7 +75,7 @@ export default function Details(props: PageProps) {
                       id="status"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      Status
+                      {status || "-"}
                     </p>
                   </label>
                 </div>
@@ -57,7 +88,7 @@ export default function Details(props: PageProps) {
                       id="report-number"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      report-number
+                      {report_number || "-"}
                     </p>
                   </label>
                 </div>
@@ -73,7 +104,7 @@ export default function Details(props: PageProps) {
                       id="usdot"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      usdot
+                      {usdot || "-"}
                     </p>
                   </label>
                 </div>
@@ -86,7 +117,7 @@ export default function Details(props: PageProps) {
                       id="report-state"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      report-state
+                      {report_state || "-"}
                     </p>
                   </label>
                 </div>
@@ -102,7 +133,7 @@ export default function Details(props: PageProps) {
                       id="date"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      date
+                      {date || "-"}
                     </p>
                   </label>
                 </div>
@@ -115,7 +146,7 @@ export default function Details(props: PageProps) {
                       id="start"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      start
+                      {start || "-"}
                     </p>
                   </label>
                 </div>
@@ -128,7 +159,7 @@ export default function Details(props: PageProps) {
                       id="end"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      end
+                      {end || "-"}
                     </p>
                   </label>
                 </div>
@@ -144,7 +175,7 @@ export default function Details(props: PageProps) {
                       id="level"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      level
+                      {level || "-"}
                     </p>
                   </label>
                 </div>
@@ -157,7 +188,7 @@ export default function Details(props: PageProps) {
                       id="facility"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      facility
+                      {facility || "-"}
                     </p>
                   </label>
                 </div>
@@ -173,7 +204,7 @@ export default function Details(props: PageProps) {
                       id="post-crash"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      post-crash
+                      {post_crash || "No"}
                     </p>
                   </label>
                 </div>
@@ -186,7 +217,7 @@ export default function Details(props: PageProps) {
                       id="hazmat"
                       class="p-3 text-lg text-slate-800 bg-slate-300 rounded-md"
                     >
-                      hazmat
+                      {hazmat || "No"}
                     </p>
                   </label>
                 </div>
@@ -205,14 +236,7 @@ export default function Details(props: PageProps) {
                   "Plate Number",
                   "VIN",
                 ]}
-                values={[[
-                  "Unit",
-                  "Type",
-                  "Make",
-                  "Plate State",
-                  "Plate Number",
-                  "VIN",
-                ]]}
+                values={vehiclesContent}
               >
               </GenericTable>
             </div>
@@ -230,23 +254,7 @@ export default function Details(props: PageProps) {
                   "IN SMS",
                   "BASIC",
                 ]}
-                values={[[
-                  "Code",
-                  "Section",
-                  "Unit",
-                  "OOS",
-                  "Description",
-                  "IN SMS",
-                  "BASIC",
-                ], [
-                  "Code",
-                  "Section",
-                  "Unit",
-                  "OOS",
-                  "Description",
-                  "IN SMS",
-                  "BASIC",
-                ]]}
+                values={violationsContent}
               >
               </GenericTable>
             </div>
@@ -258,10 +266,27 @@ export default function Details(props: PageProps) {
             </SimpleCard>
           </div>
           <div id="truck-info" class="p-8">
-            <GenericList values={["🚚 Truck #", "🚗 35vshshsh", "🚗 dshdkshkdshtrue", "🚚 2022 Freight" , "🚚 57+jdhj", "🚚 Assigned to"]}></GenericList>
+            <GenericList
+              values={[
+                `🚚 Truck #${truck.vin || " - "}`,
+                `🚗 ${truck.type || " - "}`,
+                `🚗 ${truck.plate_state || " - "}`,
+                `🚚 ${truck.make || " - "}`,
+                `🚚 ${truck.license_plate || " - "}`,
+                `🚚 Assigned to`,
+              ]}
+            >
+            </GenericList>
           </div>
           <div id="trailer-info" class="p-8">
-            <GenericList values={["oi", 34, true, "item name"]}></GenericList>
+            <GenericList values={[
+                `🚚 Trailer #${trailer.vin || " - "}`,
+                `🚗 ${trailer.type || " - "}`,
+                `🚗 ${trailer.plate_state || " - "}`,
+                `🚚 ${trailer.make || " - "}`,
+                `🚚 ${trailer.license_plate || " - "}`,
+                `🚚 Assigned to`,
+              ]}></GenericList>
           </div>
           <div id="linked-inspection-card" class="p-8">
             <SimpleCard title="Linked Inspection" content="🔵 Pulled at">
