@@ -6,7 +6,7 @@ import {
 
 const router = new Router();
 
-router.get("/inspections/", async (ctx) => {
+router.get("/inspections", async (ctx) => {
   const url = ctx.request.url;
   const sort = url.searchParams.get("sort") ?? "";
   const field = url.searchParams.get("field") ?? "";
