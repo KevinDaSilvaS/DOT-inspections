@@ -1,5 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { InspectionsFilter } from "../../components/InpectionsFilter.tsx";
+import { PageControls } from "../../components/PageControls.tsx";
 import { InspectionsTable } from "../../components/Table.tsx";
 
 interface ListProps {
@@ -67,6 +68,15 @@ export default function DotInspections(props: PageProps<ListProps>) {
             data={data}
           >
           </InspectionsTable>
+          <PageControls
+            path={"inspections"}
+            filter={filter}
+            field={field}
+            sort={sort}
+            page={page}
+            limit={limit}
+          >
+          </PageControls>
         </div>
       </div>
     </body>
