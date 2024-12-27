@@ -51,7 +51,7 @@ import { Violation } from "./dtos/violation.ts";
         vin: vehicle["@vehicle_id_number"],
       })),
       violations: dt.violations.filter((violation: any): Violation =>
-        violation["@basic"]
+        violation["@BASIC"]
       )
         .map((violation: any): Violation => ({
           code: violation["@code"],
