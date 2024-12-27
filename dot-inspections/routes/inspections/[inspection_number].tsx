@@ -4,8 +4,13 @@ import { GenericTable } from "../../components/GenericTable.tsx";
 import { SimpleCard } from "../../components/SimpleCard.tsx";
 
 export const handler: Handlers<PageProps> = {
-  GET(_req, ctx) {
+  async GET(_req, ctx) {
     const inspectionNumber = ctx.params.inspection_number;
+
+    const apiUrl = Deno.env.get("API_URL")
+    const res = await fetch(`${apiUrl}inspections/${inspectionNumber}`)
+    const dt = await res.json();
+    console.log(inspectionNumber, dt);
     console.log("PARAMS", inspectionNumber);
     return ctx.render();
   },

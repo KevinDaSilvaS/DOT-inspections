@@ -14,7 +14,7 @@ interface ListProps {
 }
 
 export const handler: Handlers<ListProps> = {
-  GET(req, ctx) {
+  async GET(req, ctx) {
     const url = new URL(req.url);
     const sort = url.searchParams.get("sort") || "desc";
     const field = url.searchParams.get("field") || "date";
@@ -38,8 +38,10 @@ export const handler: Handlers<ListProps> = {
       weight: undefined,
     }];
 
-    console.log(Deno.env.get("API_URL"));
-    console.log(filter);
+    const apiUrl = Deno.env.get("API_URL")
+    const res = await fetch(`${apiUrl}inspections?filter=${filter}&field=${field}&sort=${sort}&page=${page}&limit=${limit}`)
+    const dt = await res.json();
+    console.log(filter, dt);
     return ctx.render({ sort, field, filter, page, limit, data });
   },
 };
