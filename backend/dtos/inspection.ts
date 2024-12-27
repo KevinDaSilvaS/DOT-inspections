@@ -11,7 +11,7 @@ export interface Inspection {
   end?: string;
   usdot: string;
   facility?: string;
-  postCrash?: boolean;
+  post_crash?: boolean;
   hazmat: string;
   basic?: string;
   license_plate: string;

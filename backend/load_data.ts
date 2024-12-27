@@ -38,7 +38,7 @@ import { Violation } from "./dtos/violation.ts";
       end: undefined,
       usdot,
       facility: undefined,
-      postCrash: false,
+      post_crash: false,
       hazmat: dt["@HM_inspection"],
       basic,
       license_plate,
