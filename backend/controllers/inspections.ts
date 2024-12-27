@@ -6,7 +6,12 @@ import {
 } from "../services/inspections.ts";
 
 const validFilters: Record<string, string> = {
-  basic: "basic",
+  "Vehicle Maint.": "Vehicle Maint.",
+  "HOS Compliance": "HOS Compliance",
+  "Unsafe Driving": "Unsafe Driving",
+  "Driver Fitness": "Driver Fitness",
+  "Drugs/Alcohol": "Drugs/Alcohol",
+  "HM Compliance": "HM Compliance",
 };
 
 const validFields: Record<string, string> = {

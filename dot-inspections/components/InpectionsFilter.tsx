@@ -7,7 +7,15 @@ interface InspectionsFilterProps {
 }
 
 export function InspectionsFilter(props: InspectionsFilterProps) {
-  const options = ["", "option1"];
+  const options = [
+    "",
+    "Vehicle Maint.",
+    "HOS Compliance",
+    "Unsafe Driving",
+    "Driver Fitness",
+    "Drugs/Alcohol", 
+    "HM Compliance"
+  ];
   return (
     <div>
       <form>
