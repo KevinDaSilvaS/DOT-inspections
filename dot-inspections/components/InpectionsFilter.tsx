@@ -1,7 +1,9 @@
 interface InspectionsFilterProps {
-  filter: string
-  sort: string
-  field: string
+  filter: string;
+  sort: string;
+  field: string;
+  page: number;
+  limit: number;
 }
 
 export function InspectionsFilter(props: InspectionsFilterProps) {
@@ -35,6 +37,8 @@ export function InspectionsFilter(props: InspectionsFilterProps) {
         </div>
         <input name="sort" type="text" hidden value={props.sort} />
         <input name="field" type="text" hidden value={props.field} />
+        <input name="page" type="text" hidden value={props.page} />
+        <input name="limit" type="text" hidden value={props.limit} />
       </form>
     </div>
   );

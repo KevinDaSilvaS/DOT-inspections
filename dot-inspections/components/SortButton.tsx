@@ -3,6 +3,9 @@ interface SortButtonProps {
   fieldName: string;
   sortStyle: string;
   sortField: string;
+  page: number;
+  limit: number;
+  filter: string;
 }
 
 export function SortButton(props: SortButtonProps) {
@@ -20,9 +23,9 @@ export function SortButton(props: SortButtonProps) {
   return (
     <div class="flex flex-col">
       <a
-        href={`/${props.path}?field=${props.fieldName}&sort=${
+        href={`/${props.path}?filter=${props.filter}&field=${props.fieldName}&sort=${
           options[sortStyle]
-        }`}
+        }&page=${props.page}&limit=${props.limit}`}
       >
         {props.sortField == props.fieldName ? arrows[sortStyle] : "🟦"}
       </a>

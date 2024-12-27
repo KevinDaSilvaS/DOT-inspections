@@ -13,6 +13,9 @@ interface InspectionsTableProps {
   data: InspectionData[];
   sortStyle: string;
   sortField: string;
+  page: number;
+  limit: number;
+  filter: string;
 }
 
 export function InspectionsTable(props: InspectionsTableProps) {
@@ -23,6 +26,9 @@ export function InspectionsTable(props: InspectionsTableProps) {
           <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
+                page={props.page}
+                limit={props.limit}
+                filter={props.filter}
                 sortField={props.sortField}
                 sortStyle={props.sortStyle}
                 path={"inspections"}
@@ -35,6 +41,9 @@ export function InspectionsTable(props: InspectionsTableProps) {
           <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
+                page={props.page}
+                limit={props.limit}
+                filter={props.filter}
                 sortField={props.sortField}
                 sortStyle={props.sortStyle}
                 path={"inspections"}
@@ -47,6 +56,9 @@ export function InspectionsTable(props: InspectionsTableProps) {
           <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
+                page={props.page}
+                limit={props.limit}
+                filter={props.filter}
                 sortField={props.sortField}
                 sortStyle={props.sortStyle}
                 path={"inspections"}
@@ -59,6 +71,9 @@ export function InspectionsTable(props: InspectionsTableProps) {
           <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
+                page={props.page}
+                limit={props.limit}
+                filter={props.filter}
                 sortField={props.sortField}
                 sortStyle={props.sortStyle}
                 path={"inspections"}
@@ -71,6 +86,9 @@ export function InspectionsTable(props: InspectionsTableProps) {
           <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
+                page={props.page}
+                limit={props.limit}
+                filter={props.filter}
                 sortField={props.sortField}
                 sortStyle={props.sortStyle}
                 path={"inspections"}
@@ -83,6 +101,9 @@ export function InspectionsTable(props: InspectionsTableProps) {
           <th class="border-b dark:border-slate-600 font-medium p-4 pl-8">
             <div class="float-left">
               <SortButton
+                page={props.page}
+                limit={props.limit}
+                filter={props.filter}
                 sortField={props.sortField}
                 sortStyle={props.sortStyle}
                 path={"inspections"}
