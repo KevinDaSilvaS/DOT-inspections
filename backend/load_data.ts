@@ -2,18 +2,20 @@ import { parse } from "@libs/xml";
 import { Inspection } from "./dtos/inspection.ts";
 import { Vehicle } from "./dtos/vehicle.ts";
 import { Violation } from "./dtos/violation.ts";
+import { connect } from "./repositories/start_db.ts";
+import { inspections } from "./repositories/inpections/client.ts";
 
 (async function () {
   const contents = await Deno.readTextFile(
-    "../xml/USDOT_80806_All_BASICs_Public_11-29-2024.xml",
+    "./xml/USDOT_80806_All_BASICs_Public_11-29-2024.xml",
   );
   const usdot = "USDOT_80806";
-  const inspections: Record<string, Inspection> = {};
+  const inspectionsData: Record<string, Inspection> = {};
   const inspectionsInput = parse(contents).carrierData.inspections.inspection;
 
   for (
     let i = 0;
-    inspectionsInput.length - 1 + i < inspectionsInput.length;
+    i < inspectionsInput.length;
     i++
   ) {
     const dt = inspectionsInput[i];
@@ -28,7 +30,7 @@ import { Violation } from "./dtos/violation.ts";
       ? dt.vehicles[0]["@license_number"]
       : undefined;
 
-    inspections[dt["@report_number"]] = {
+    inspectionsData[dt["@report_number"]] = {
       report_number: dt["@report_number"],
       date: dt["@inspection_date"],
       report_state: dt["@report_state"],
@@ -65,5 +67,10 @@ import { Violation } from "./dtos/violation.ts";
     };
   }
 
-  console.log(inspections);
+  const db = await connect();
+  const inspectionsClient = inspections(db);
+  const res = await inspectionsClient.insertMany(
+    Object.values(inspectionsData),
+  );
+  console.log(res);
 })();
