@@ -1,0 +1,8 @@
+.vscode
+node_modules
+.gitignore
+Dockerfile
+.env
+t.ts
+parse-input.xml
+*.exe
