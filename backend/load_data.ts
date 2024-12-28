@@ -38,6 +38,7 @@ import { inspections } from "./repositories/inpections/client.ts";
       weight: dt["@time_weight"],
       start: undefined,
       end: undefined,
+      status: undefined,
       usdot,
       facility: undefined,
       post_crash: false,
