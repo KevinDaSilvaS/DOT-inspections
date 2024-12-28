@@ -7,11 +7,8 @@ Fullstack system to list and get details from DOT Inspections
 To run the app first we need to have a mongodb set up and then run the builds for backend and front end
 
 - Podman(recommended) <br>
-` 
-podman compose up -d mongo mongo-express 
-` 
-<br>
-` podman compose up -d --build backend frontend `
+`podman compose up -d mongo mongo-express` <br>
+`podman compose up -d --build backend frontend`
 
 - Docker <br>
 `docker compose up -d mongo mongo-express` <br>
