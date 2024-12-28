@@ -4,6 +4,7 @@ import { Violation } from "./violation.ts";
 export interface Inspection {
   report_number: string;
   date: string;
+  status: string;
   report_state: string;
   level: string;
   weight: string;
