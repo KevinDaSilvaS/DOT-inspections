@@ -3,8 +3,8 @@ import { SortButton } from "./SortButton.tsx";
 type InspectionData = {
   date: string;
   status: string;
-  inspectionNumber: string;
-  vehiclePlate: string;
+  report_number: string;
+  license_plate: string;
   basic: string | undefined;
   weight: number | undefined;
 };
@@ -128,10 +128,10 @@ export function InspectionsTable(props: InspectionsTableProps) {
               {inspection.status}
             </td>
             <td class="bg-slate-300 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
-              {inspection.inspectionNumber}
+              {inspection.report_number}
             </td>
             <td class="bg-slate-300 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
-              {inspection.vehiclePlate}
+              {inspection.license_plate}
             </td>
             <td class="bg-slate-300 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
               {inspection.basic ?? "-"}
@@ -142,7 +142,7 @@ export function InspectionsTable(props: InspectionsTableProps) {
             <td class="bg-slate-300 text-slate-900 p-5 text-center border-t-2 border-slate-500 p-4 pl-8 text-center">
               <a
                 class="rounded-md bg-orange-600 text-xs/6 font-semibold text-gray-100 p-2 shadow-md"
-                href={"/inspections/" + inspection.inspectionNumber}
+                href={"/inspections/" + inspection.report_number}
               >
                 details
               </a>
