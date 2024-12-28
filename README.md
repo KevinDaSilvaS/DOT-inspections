@@ -46,3 +46,12 @@ If you want to check the backend endpoints there's two GET endpoints:
 - Notion didnt let me download the xml file so I had to go to the original website and download the most recent xml file
 
 - Also I noticed that there were some data fields werent present in any registers in the xml and those fields are the following:
+
+- start
+- end
+- status
+- facility
+- post_crash
+- vehicles.make
+- violations.section
+- violations.inSMS
