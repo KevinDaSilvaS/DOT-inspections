@@ -1,4 +1,4 @@
-export const validSorts: Record<string, string> = {
-  asc: "asc",
-  desc: "desc",
+export const validSorts: Record<string, number> = {
+  asc: 1,
+  desc: -1,
 };

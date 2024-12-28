@@ -2,6 +2,6 @@ export interface InspectionsSelector {
   filter?: string;
   page: number;
   limit: number;
-  sort: string;
+  sort: number;
   field: string;
 }
