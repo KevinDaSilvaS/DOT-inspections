@@ -2,3 +2,5 @@ node_modules
 parse-input.xml
 t.ts
 *.exe
+.env
+todo
