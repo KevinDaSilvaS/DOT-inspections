@@ -1,0 +1,20 @@
+# DOT Inspections
+
+Fullstack system to list and get details from DOT Inspections
+
+## Running the app
+
+To run the app first we need to have a mongodb set up and then run the builds for backend and front end
+
+- Podman(recommended) <br>
+`podman compose up -d mongo mongo-express` <br>
+`podman compose up -d --build backend frontend`
+
+- Docker <br>
+`docker compose up -d mongo mongo-express` <br>
+`docker compose up -d --build backend frontend`
+
+- Local <br>
+In a terminal window run: `cd backend` and run `deno task load` to populate the db and then run `deno task start`
+In another terminal window run: `cd dot-inspections` and run `deno task start`
+
