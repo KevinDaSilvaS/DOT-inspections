@@ -1,6 +1,8 @@
 {
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "dev": "deno run --watch main.ts",
+    "start": "deno --allow-net --allow-env --allow-read main.ts",
+    "load": "deno --allow-net --allow-env --allow-read load_data.ts"
   },
   "imports": {
     "@db/mongo": "jsr:@db/mongo@^0.33.0",
