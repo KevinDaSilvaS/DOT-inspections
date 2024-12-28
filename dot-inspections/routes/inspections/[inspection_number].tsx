@@ -1,12 +1,11 @@
 // deno-lint-ignore-file no-explicit-any
-import { Handlers } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { GenericList } from "../../components/GenericList.tsx";
 import { GenericTable } from "../../components/GenericTable.tsx";
 import { SimpleCard } from "../../components/SimpleCard.tsx";
 
 interface DetailsProps {
-  inspectionNumber: string;
-  data: any;
+  inspection: any;
 }
 
 export const handler: Handlers<DetailsProps> = {
@@ -18,14 +17,12 @@ export const handler: Handlers<DetailsProps> = {
     if(res.status != 200) {
       return ctx.renderNotFound();
     }
-    const data = await res.json();
-    console.log(inspectionNumber, data);
-    console.log("PARAMS", inspectionNumber);
-    return ctx.render({ data, inspectionNumber });
+    const inspection = await res.json();
+    return ctx.render({ inspection });
   },
 };
 
-export default function Details(props: DetailsProps) {
+export default function Details(props: PageProps<DetailsProps>) {
   const {
     status,
     report_number,
@@ -40,7 +37,7 @@ export default function Details(props: DetailsProps) {
     hazmat,
     vehicles,
     violations,
-  } = props.data;
+  } = props.data.inspection;
   const vehiclesContent: any[] = vehicles?.map((
     { unit, type, vin, make, plate_state, license_plate }: Record<string, any>,
   ): any[] => [unit, type, make, plate_state, license_plate, vin]) || [];
@@ -51,10 +48,9 @@ export default function Details(props: DetailsProps) {
 
   const truck = vehicles?.length > 0 ? vehicles[0] : {}
   const trailer = vehicles?.length > 1 ? vehicles[1] : {}
-  return (
-    <body class="bg-slate-200">
+  return (<body class="bg-slate-200">
       <div class="pl-8 pt-5">
-        <h1 class="text-3xl font-sans">{props.inspectionNumber}</h1>
+        <h1 class="text-3xl font-sans">{report_number}</h1>
       </div>
 
       <div id="page" class="grid grid-cols-4">
@@ -294,6 +290,7 @@ export default function Details(props: DetailsProps) {
           </div>
         </div>
       </div>
-    </body>
+    </body> 
+    
   );
 }

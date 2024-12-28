@@ -3,14 +3,22 @@ import { InspectionsFilter } from "../../components/InpectionsFilter.tsx";
 import { PageControls } from "../../components/PageControls.tsx";
 import { InspectionsTable } from "../../components/Table.tsx";
 
+interface InfractionsResponse {
+  date: string;
+  status: string;
+  report_number: string;
+  license_plate: string;
+  basic: string | undefined;
+  weight: number | undefined;
+}
+
 interface ListProps {
   sort: string;
   field: string;
   filter: string;
   page: number;
   limit: number;
-  // deno-lint-ignore no-explicit-any
-  data: any[];
+  data: InfractionsResponse[];
 }
 
 export const handler: Handlers<ListProps> = {
@@ -22,26 +30,9 @@ export const handler: Handlers<ListProps> = {
     const page = parseInt(url.searchParams.get("page") || "1");
     const limit = parseInt(url.searchParams.get("limit") || "10");
 
-    const data = [{
-      date: "date",
-      status: "status",
-      inspectionNumber: "inspectionNumber",
-      vehiclePlate: "vehiclePlate",
-      basic: undefined,
-      weight: undefined,
-    }, {
-      date: "adate",
-      status: "astatus",
-      inspectionNumber: "ainspectionNumber",
-      vehiclePlate: "avehiclePlate",
-      basic: undefined,
-      weight: undefined,
-    }];
-
     const apiUrl = Deno.env.get("API_URL")
-    const res = await fetch(`${apiUrl}inspections?filter=${filter}&field=${field}&sort=${sort}&page=${page}&limit=${limit}`)
-    const dt = await res.json();
-    console.log(filter, dt);
+    const res = await fetch(`${apiUrl}/inspections?filter=${filter}&field=${field}&sort=${sort}&page=${page}&limit=${limit}`)
+    const data = await res.json();
     return ctx.render({ sort, field, filter, page, limit, data });
   },
 };
