@@ -56,7 +56,7 @@ export default function Details(props: PageProps<DetailsProps>) {
       <div id="page" class="grid grid-cols-4">
         <div
           id="first-block"
-          class="p-2 m-4 w-96 col-span-3 w-full bg-slate-100 rounded-md shadow-md"
+          class="p-2 m-4 w-96 max-[600px]:col-span-4 col-span-3 w-full bg-slate-100 rounded-md shadow-md"
         >
           <div id="inspection-overview" class="p-8">
             <h2 class="text-xl font-sans">Vehicle Overview</h2>
@@ -256,7 +256,7 @@ export default function Details(props: PageProps<DetailsProps>) {
             </div>
           </div>
         </div>
-        <div id="second-block" class="p-2 m-4 col-span-1">
+        <div id="second-block" class="p-2 m-4 max-[1100px]:col-span-4 max-[600px]:m-1 col-span-1">
           <div id="response-file-card" class="p-8">
             <SimpleCard title="Response file" content="🔵 Uploaded at">
             </SimpleCard>
