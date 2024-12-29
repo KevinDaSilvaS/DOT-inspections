@@ -20,7 +20,7 @@ export class InspectionsService {
     const sortObj: Record<string, number> = {}
     sortObj[field] = sort;
 
-    const filterObj: Record<string, string | number | boolean> = {}
+    const filterObj: Record<string, string> = {}
     if(filter) {
         filterObj["basic"] = filter;
     }
