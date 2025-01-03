@@ -40,7 +40,7 @@ export class InspectionsService {
     .skip((page - 1) * limit)
     .limit(limit)
     .toArray();
-    return { code: 201, data: inspections };
+    return { code: 200, data: inspections };
   }
 
   public async getInspectionDetails(
